@@ -2,8 +2,8 @@
 # require_dependency 'application'
 
 class CapistranoExtension < Radiant::Extension
-  version "1.0"
-  description "Describe your extension here"
+  version "0.1"
+  description "http://github.com/ehaselwanter/radiant-capistrano-extension"
   url "http://yourwebsite.com/capistrano"
   
   # define_routes do |map|

@@ -1,3 +1,18 @@
-= Capistrano
+You have to add the deepmodules gem
 
-Description goes here
+http://github.com/morhekil/capistrano-deepmodules/tree/master
+
+$ gem sources -a http://gems.github.com
+$ sudo gem install morhekil-capistrano-deepmodules
+
+and add 
+
+require 'capistrano/deepmodules'
+ 
+to the top of ypur Capfile
+
+and 
+
+Dir['vendor/extensions/capistrano/lib/recipes/*.rb'].each { |plugin| load(plugin) } 
+
+to the bottom of your Capfile
