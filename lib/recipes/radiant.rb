@@ -2,7 +2,7 @@ namespace :deploy do
 
   after "deploy:cold", "deploy:radiant:bootstrap"
   after "deploy:migrate", "deploy:radiant:migrate:extensions"
-  after "deploy:update" do
+  after "deploy:symlink" do
     run "mkdir #{latest_release}/cache"
     #run "cp #{latest_release}/config/database_eyecatch.yml #{latest_release}/config/database.yml"
     run "chmod -R g+w #{deploy_to}"
