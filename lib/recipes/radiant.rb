@@ -9,10 +9,13 @@ namespace :deploy do
     run "[ ! -d #{shared_path}/assets ] && mkdir #{shared_path}/assets; true"
     run "[ ! -d #{shared_path}/galleries ] && mkdir #{shared_path}/galleries; true"
     run "[ ! -d #{shared_path}/uploads ] && mkdir #{shared_path}/uploads; true"
+    run "[ ! -d #{shared_path}/system ] && mkdir #{shared_path}/system; true"
     run "ln -s #{shared_path}/assets #{latest_release}/public/assets"
     run "ln -s #{shared_path}/galleries #{latest_release}/public/galleries"
     run "ln -s #{shared_path}/uploads #{latest_release}/public/uploads"
+    run "ln -s #{shared_path}/system #{latest_release}/public/system"
   end
+
 
     desc "clear cached copy, e.g. when changing submodule urls"
   task :clear_cached_copy do
@@ -69,6 +72,12 @@ rm -rf #{shared_path}/cached-copy
       task :fetch_assets do
         set :deploy_to_path,  File.join(deploy_to,"current","public","assets")
         system "rsync -Lavz -e ssh #{user}@#{ehost}:#{deploy_to_path}/ public/assets "
+      end
+
+      desc "fetch mailer system"
+      task :fetch_system do
+        set :deploy_to_path,  File.join(deploy_to,"current","public","system")
+        system "rsync -Lavz -e ssh #{user}@#{ehost}:#{deploy_to_path}/ public/system "
       end
 
       desc "fetch gallery"
