@@ -4,7 +4,7 @@ namespace :db do
     load 'config/environment.rb'
     abcs = ActiveRecord::Base.configurations
     case abcs[RAILS_ENV]["adapter"]
-    when 'mysql'
+    when 'mysql','mysql2'
       ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
       File.open("db/#{RAILS_ENV}_data.sql", "w+") do |f|
         if abcs[RAILS_ENV]["password"].blank?
@@ -35,7 +35,7 @@ namespace :db do
     load 'config/environment.rb'
     abcs = ActiveRecord::Base.configurations
     case abcs[RAILS_ENV]["adapter"]
-    when 'mysql'
+    when 'mysql','mysql2'
       ActiveRecord::Base.establish_connection(abcs[RAILS_ENV])
       if abcs[RAILS_ENV]["password"].blank?
         `mysql -h #{abcs[RAILS_ENV]["host"]} -u #{abcs[RAILS_ENV]["username"]} #{abcs[RAILS_ENV]["database"]} < db/production_data.sql`
